@@ -1,0 +1,68 @@
+<!doctype html>
+<html ng-app="ui.bootstrap.ams">
+<head>
+    <script src="js/angular.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.12.1.js"></script>
+    <script src="js/robot.js"></script>
+    <link href="css//bootstrap.css" rel="stylesheet">
+</head>
+<body>
+    <div ng-controller="ConnectController">
+        <form novalidate class="simple-form">
+                    <table border=""3">
+                        <tr>
+                            <td>URL:</td><td><input size=40 type="text" ng-model="ws_url" /></td>
+
+                            <td><input type="submit" ng-click="connect()" value="Connect" /></td>
+                            <td><input type="submit" ng-click="disconnect()" value="Disconnect" />
+                            <td>robot connection:<label ng-bind="connected"></label></td>
+                        </tr>
+                        <tr>
+                            <td>backup distance:<label ng-bind="distance"></label></td>
+                            <td>left line:<label ng-bind="leftline"></label></td>
+                            <td>right line:<label ng-bind="rightline"></label></td>
+
+                        </tr>
+                        </table>
+                        <table>
+                        <tr>
+                            <td><table>
+                                <tr>
+                                    <td></td>
+                                    <td><button class="btn btn-primary btn-sm" ng-mousedown="sendCommandMessage('F')"  ng-mouseup="sendCommandMessage('S')">Forward</button></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><button class="btn btn-primary btn-sm" ng-mousedown="sendCommandMessage('L')"  ng-mouseup="sendCommandMessage('S')">Left</button></td>
+                                    <td align="center"><button class="btn btn-primary btn-sm" ng-click="sendCommandMessage('S')">Stop</button></td>
+                                    <td><button class="btn btn-primary btn-sm" ng-mousedown="sendCommandMessage('R')"  ng-mouseup="sendCommandMessage('S')">Right</button></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td align="center"><button class="btn btn-primary btn-sm" ng-mousedown="sendCommandMessage('B')"  ng-mouseup="sendCommandMessage('S')">Back</button></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            </td>
+                            <td>
+                                <img src="http://192.168.1.4:8080/?action=stream" />
+                            </td>
+                        </tr>
+                        </table>
+        </form>
+        <br>
+        <table>
+            <tr>
+            <td>
+                <label>Received Messages:</label><br>
+                <textarea id="received_messages" readonly="true" cols="80" rows="5"></textarea>
+            </td>
+            <td>
+                <label>Sent Messages:</label><br>
+                <textarea id="sent_messages" readonly="true" cols="80" rows="5"></textarea>
+            </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
